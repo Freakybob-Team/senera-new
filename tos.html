@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senera TOS</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+        * {
+            font-family: "Roboto", serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            font-variation-settings:
+                "wdth" 100;
+        }
+
+        #senera {
+            background-image: linear-gradient(to right, #0000FF, #ffffff, #0404ac, #005300, #00FF00, #e0e7ff, #00b80f);
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            --bg-size: 200%;
+            color: transparent;
+            background-size: var(--bg-size);
+            animation: animate 7s linear infinite;
+            font-weight: 900;
+        }
+
+        #rules-div div {
+            border-radius: 8px;
+            padding: 20px;
+            width: 90%;
+            background: #b8b8b854;
+        }
+
+        body {
+            background: rgb(32, 32, 32);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        #rules-div {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        #rules {
+            background: rgba(240, 156, 0, 0.3) !important;
+            border-color: orange;
+            border-radius: 8px;
+            border-width: 2px;
+            border-style: solid;
+            width: 90%;
+            font-size: 20px;
+            max-height: 60px;
+            transition-property: all;
+            transition-duration: .6s;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes animate {
+            to {
+                background-position: var(--bg-size);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- any ideas? nope should we add some css yeah ofc
+     you do css please ok can u make the p elements divs pretty please so i cook-->
+    <div id="container">
+        <h1>Welcome to <span id="senera">Senera.</span></h1>
+        <h2>By using Senera, you agree to these terms.</h2>
+        <div id="rules-div">
+        <div id="rules">
+            Rules
+        </div>
+
+            <div>Please do not submit (via posting, or image uploading) NSFW (Not Safe For Work, ex: porn, gore)/NSFL
+                content.</div>
+            <div>Hacking others accounts is against the rules. Hacked accounts will be banned, and hackers will be
+                banned too.</div>
+            <div>Do not send links to NSFW/NSFL websites.</div>
+            <div>Propaganda posting is banned. Trying to recruit others to your MLM? Too bad, do it somewhere else.
+            </div>
+            <div>Alt accounts that are used for avoiding bans will be banned.</div>
+            <span>Privacy</span>
+            <div>We are required to collect data, due to the use of accounts.</div>
+            <span>What's Collected:</span>
+            <div>Usernames, emails, user UIDs, information submitted into Senera (profile pictures, messages,
+                connections to other services), and hashed passwords</div>
+            <div>Third-parties can also collect data on you, whether we like it or not. This includes your ISP,
+                Firebase, governments, and VPN companies.</div>
+            <div>Your data on the Senera platform can be deleted by us for any reason, in the form of banning, deletion, or other methods.</div>
+        </div>
+    </div>
+</body>
+
+</html>

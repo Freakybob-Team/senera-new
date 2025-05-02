@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senera - 404</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Roboto", sans-serif;
+        }
+
+        body {
+            background: #000;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gradient-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(300deg, rgb(6, 9, 57) 0%, rgb(12, 52, 8) 100%);
+            opacity: 0.8;
+            z-index: 1;
+        }
+
+        .scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, transparent 50%, rgba(0, 0, 0, 0.3) 50%, transparent 51%);
+            background-size: 100% 4px;
+            z-index: 3;
+            pointer-events: none;
+            animation: scanline 10s linear infinite;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 800px;
+            position: relative;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(11, 161, 6, 0.3);
+            border: 1px solid rgba(13, 149, 0, 0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        .error-code {
+            font-family: 'VT323', monospace;
+            font-size: 12rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(11, 161, 6, 0.8),
+                         0 0 20px rgba(11, 161, 6, 0.5);
+            color: #0ba106;
+            position: relative;
+            letter-spacing: 10px;
+        }
+
+        .flicker {
+            animation: flicker 4s linear infinite;
+        }
+
+        .error-message {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            line-height: 1.4;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        .error-description {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1rem 0;
+        }
+
+        .logo {
+            max-width: 300px;
+            margin: 2rem auto;
+            filter: drop-shadow(0 0 15px rgba(11, 161, 6, 0.6));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .home-button {
+            background-color: #0ba106;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(11, 161, 6, 0.5);
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .home-button:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+            z-index: 1;
+        }
+
+        .home-button:hover:before {
+            left: 100%;
+        }
+
+        .home-button:hover {
+            background-color: #098005;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 0 30px rgba(11, 161, 6, 0.8);
+        }
+
+        .home-button span {
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px) rotate(-1deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(1deg);
+            }
+            100% {
+                transform: translateY(0px) rotate(-1deg);
+            }
+        }
+
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                opacity: 1;
+                text-shadow: 0 0 10px rgba(11, 161, 6, 0.8),
+                             0 0 20px rgba(11, 161, 6, 0.5);
+            }
+            20%, 24%, 55% {
+                opacity: 0.5;
+                text-shadow: none;
+            }
+            80%, 83% {
+                opacity: 0.3;
+                text-shadow: none;
+            }
+            82%, 97% {
+                opacity: 0.8;
+                text-shadow: 0 0 10px rgba(11, 161, 6, 0.8),
+                             0 0 20px rgba(11, 161, 6, 0.5);
+            }
+            98%, 99.8% {
+                opacity: 0.2;
+                text-shadow: none;
+            }
+            78%, 79.5% {
+                opacity: 0.4;
+                text-shadow: 0 0 5px rgba(11, 161, 6, 0.4);
+            }
+        }
+
+        @keyframes scanline {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 0 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 6rem;
+            }
+
+            .error-message {
+                font-size: 1.4rem;
+            }
+
+            .logo {
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gradient-bg"></div>
+    <div class="scanline"></div>
+
+    <div class="container">
+        <h1 class="error-code flicker">404</h1>
+        <p class="error-message">Oops! The page you're looking for seems to have vanished...</p>
+        <p class="error-description">Senera is either down, or you went to a page that doesn't exist.</p>
+
+        <div class="logo">
+            <img src="https://web.senera.chat/logos/senera-banner.png" alt="Senera Logo" width="100%" style="border-radius: 40px;">
+        </div>
+
+        <a href="/" class="home-button"><span>Return to Senera</span></a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const errorCode = document.querySelector('.error-code');
+            const text = errorCode.textContent;
+            errorCode.textContent = '';
+
+            for (let i = 0; i < text.length; i++) {
+                const span = document.createElement('span');
+                span.textContent = text[i];
+                span.style.animation = `flicker ${Math.random() * 2 + 2}s linear infinite ${Math.random() * 2}s`;
+                errorCode.appendChild(span);
+            }
+        });
+    </script>
+</body>
+</html>
