@@ -1,211 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Senera is down</title>
+        <style>
+            * {
+                color: black;
+                text-align: center;
+                font-family: "Roboto", sans-serif;
+                font-optical-sizing: auto;
+                font-style: normal;
+                font-variation-settings: "wdth" 100;
+            }
 
-<head>
-    <meta content="Senera Public Beta" property="og:title" />
-    <meta content="A new era is here." property="og:description" />
-    <meta content="https://web.senera.chat" property="og:url" />
-    <meta content="https://web.senera.chat/logos/senera-banner.png" property="og:image" />
-    <script src="https://cdn.jsdelivr.net/npm/@twemoji/api@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
-    <title>Senera Public Beta</title>
-    <link rel="icon" href="logos/32x32.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/css.css">
-</head>
+            body {
+                background-color: lightgreen;
+            }
 
-<body>
-    <div id="notification" style="display: none;">
-        <h2>Notifications</h2>
-        <span id="closeNOTI">&times;</span>
-        <ul id="notification-list"></ul>
+            hr {
+                border-style: solid;
+            }
 
-    </div>
-    <div class="user-container" style="display: none;">
-        <div id="banner-div" style="box-sizing: border-box; position: relative;">
-            <img src="logos/senera-banner.png" alt="Profile Banner" id="profile-banner" style="border-radius: 8px 8px 0 0; height: 150px; object-fit: cover;" width="100%" onerror="this.src='logos/senera-banner.png'">
-            
-            <img id="profile-pfp" src="images/png/default.png" alt="Profile Picture" onerror="this.src='default.png'" class="user-img"
-                height="100px" width="100px" 
-                style="border-radius: 50%; border: 5px solid #2b2b2b; position: absolute; left: 50%; bottom: -50px; transform: translateX(-50%); background-color: #3b3b3b;">
-        </div>
-        <div class="user-desc" style="margin-top: 45px;">
-            <p id="profile-status" class="desc" style="font-size: 15px;">what</p>
-        </div>
-        <div class="user-info" style="flex-direction: column;">  
-            <p id="profile-name" class="username" style="font-size: 32px;" data-username="{{FRIENDUSERNAME}}"></p>
-            <p id="pronouns" class="pronouns" style="font-size: 15px;">greg/skibidi</p>
-        </div>
-        <div class="user-options" style="display: none;">
-            <button id="friend-btn">
-                <img src="images/png/friend.png" alt="Friend Button" class="friend-img" />
-            </button>
-        </div>
-    </div>
-    
-    
-
-    <div id="login-container" class="signInForm">
-        <h1>Welcome back to Senera (Public Beta)</h1>
-        <form id="login-form" style="display: inline-block;" onsubmit="login(event)">
-            <label for="login-username">Username (not required for sign in)</label><br>
-            <input type="text" id="login-username"
-                placeholder="The unique account name connected to your account."><br><br>
-            <label for="login-email">Email</label><br>
-            <input type="email" id="login-email" placeholder="The email connected to your account." required><br><br>
-            <label for="login-password">Password</label><br>
-            <input type="password" id="login-password" placeholder="Your password (don't forget this!)"
-                required><br><br>
-            <button type="submit">Sign in</button>
-            <button type="submit">Sign up</button>
-            <p id="tos-notice" style="color: red;">By using Senera, I agree to the <a
-                    href="https://senera.freakybob.site/tos">TOS</a>.<br>Senera has been getting a bunch of attacks and I'm sick of it;<br>sign ups are currently off.</p> <!-- fuck you.  -->
-            <p id="login-error" style="color: red;"></p>
-        </form>
-    </div>
-    <!--    <script>
-        const signupCaptcha = document.getElementById('signupCaptcha');
-
-            signupCaptcha.addEventListener('verified', (e) => {
-                console.log('verified event', {token: e.token});
-            });
-            signupCaptcha.addEventListener('error', (e) => {
-                console.log('error event', {error: e.error});
-            });
-        </script>-->
-    <div id="chat-container" style="display: none;">
-        <div class="gradientfortop"></div>
-        <ul id="messages"></ul>
-        <div id="typingIndicator"></div>
-        <form id="message-form" autocomplete="off">
-            <p id="warning-message" style="color: red; display: none; text-align: center; font-weight: bold;"></p>
-            <div id="msg">
-                <div id="replyIndicator" style="display: none;"></div>
-                <input type="text" id="message" placeholder="Send a message" maxlength="300">
-                <h1 id="charLimit">300</h1>
-                <button id="send" type="submit"><img src="images/svg/send.svg" alt="Send"></button>
-            </div>
-        </form>
-
-        <div class="online">loading...</div>
-        <div id="menu">
-            <button id="profile" class="user-settingsBTN" title="Profile"><img src="images/png/default.png"
-                    style="width:40px;height:40px;border-radius:50%;" alt="Profile"
-                    onerror="this.src='images/png/default.png'"></button>
-            <button id="notification-btn" title="notifications"><img src="images/png/notification_not_active.png"
-                    alt="notifications"></button>
-            <button id="settings" title="Settings"><img src="images/svg/settings.svg" alt="Settings"></button>
-            <button id="help" title="Help"><img src="images/svg/help.svg" alt="Help"></button>
-        </div>
-        <div id="modal-settings" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>Settings</h2>
-                <form onsubmit="return false;" autocomplete="off">
-                    <input type="checkbox" id="loadYouTubeEmbedsC" checked>
-                    <label for="loadYouTubeEmbedsC">Load YouTube Embeds (disable if using a low-mem system)</label>
-                    <br>
-                    <input type="checkbox" id="loadImageEmbedsC" checked>
-                    <label for="loadImageEmbedsC">Load images (recommended)</label>
-                    <br>
-                    <input type="checkbox" id="unloadMessagesC" checked>
-                    <label for="unloadMessagesC" title="Automatically unload messages before the latest 50.">Unload
-                        messages (recommended)</label>
-                    <br>
-                    <input type="checkbox" id="pingSoundC" checked>
-                    <label for="pingSoundC">Enable pings</label>
-                    <br>
-                    <button type="button" id="LOGOUTTHANKSNOMAFORTHECODEongioweyouone">Log out</button>
-                    <button type="button" id="saveSettings">Save</button>
-                </form>
-            </div>
-        </div>
-
-        <div id="modal-feedback" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>What</h2>
-                <p>You shouldn't see this.</p>
-            </div>
-        </div>
-        <div id="modal-help" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>Help</h2>
-                <p>Need help getting around? Uhh..</p>
-                <strong>Devs:</strong>
-                <li>Freakybob Team (general owner of the project)</li>
-                <li>Squirrel (Added Embeds, Emojis and more =3)</li>
-                <li>Nomaakip (Helped with the frontend, added profile banners,button animations and made the desktop app)</li>
-                <li>Wish (Made the linux port of Senera)</li>
-                <li>mpax235 (fixed SO MUCH stuff omfg)</li>
-                <li>All the people at Stack Overflow 13 years ago</li>
-                <li>ChatGPT for the backend stuff</li>
-                <br>
-                <div id="separator" style="height: 1px; background-color: #ccc;"></div>
-                <br>
-                <strong>Open Source Attributions:</strong>
-                <li>Senera is licensed under <a
-                        href="https://github.com/Freakybob-Team/senera/blob/main/LICENSE">GPL-3.0</a>.</li>
-                <li>Google Material Design Icons, licensed under the Apache 2.0 License.</li>
-                <li>Material Design Sounds by Google, CC-BY 4.0</li>
-                <li>Twemoji provided by Jason Sofonia & Justine De Caires (originally Twitter), licensed under the MIT
-                    License.</li>
-                <li>Twemoji by jdecked on GitHub, adapted from "Twemoji" by Twitter, CC-BY 4.0.</li>
-            </div>
-        </div>
-
-        <div id="user-settings" class="modal">
-            <div class="modal-content" style="overflow-y: auto;">
-                <span class="close">&times;</span>
-                <h2>Profile</h2>
-                <form onsubmit="return false;" autocomplete="off">
-                    <label for="settings-pfp">Profile Picture URL:</label>
-                    <input type="url" id="settings-pfp" placeholder="Enter image URL (default.png)">
-                    <br>
-                    <br>
-                    <label for="status" id="status-message">Change your status</label>
-                    <input type="text" id="status" placeholder="Change your status" maxlength="40">
-                    <span id="charLimit2">40</span>
-                    <br>
-                    <br>
-                    <label for="pronouns_input" id="pronounstext">Pronouns:</label><br>
-                    <input type="text" id="pronouns_input" maxlength="15" placeholder="Enter pronouns">
-                    <span id="charLimit3">15</span>
-                    <br>
-                    <br>
-                    <label for="settings-banner">Profile Banner URL:</label><br>
-                    <input type="url" id="settings-banner" placeholder="Enter image URL (defaultBanner.png)">
-                    <br>
-                    <br>
-                    <button type="button" id="savePronouns">Save pronouns</button>
-                    <button type="button" id="saveBanner">Save Banner</button>
-                    <button type="button" id="savePFP">Save profile picture</button>
-                    <button type="button" style="margin-top: 4px;" id="saveStatus">Save status</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="loadingDiv">
-        <img src="images/gif/loading.gif">
-        <p><b>Senera Public Beta</b></p>
-        <p1 id="loadingStatus">Trying to sign you in...</p1>
-    </div>
-    <div id="previewModal" class="preview-modal">
-        <div id="previewContent"></div>
-    </div>
-</body>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        twemoji.parse(document.body, {
-            folder: 'svg',
-            ext: '.svg'
-
-        });
-    });
-</script>
-<script type="module" src="./index.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@hcaptcha/vanilla-hcaptcha"></script>
-
+            #logo {
+                width: 400px;;
+            }
+        </style>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <img id="logo" src="/senera-banner.png">
+        <h1>Senera has shutdown</h1>
+        <p>Thank you for using Senera. Senera has been shutdown formally. Signups and signins are now disabled, and will not be re-opened.</p>
+        <p>We will rebuild Senera from the ground-up, but for now, goodbye.</p>
+        <hr>
+        <p>Senera will remain <a href="https://github.com/Freakybob-Team/senera-new">open-source</a>.</p>
+        <p>2024-2025 Freakybob Team. This page licensed under GPL-3.0.</p>
+    </body>
 </html>
